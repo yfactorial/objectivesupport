@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'objective_support' target in the 'objective_support' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
