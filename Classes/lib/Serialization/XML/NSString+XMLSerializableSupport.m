@@ -25,6 +25,9 @@
 	NSDictionary* escapeChars = [NSDictionary dictionaryWithObjectsAndKeys:@"&quot;",@"\"",@"&apos;",@"'",@"&lt;",@"<",@"&gt;",@">",nil];
 	return [temp gsub:escapeChars];
 }
-	
+- (NSString *)toXMLElementAs:(NSString *)rootName excludingInArray:(NSArray *)exclusions
+			withTranslations:(NSDictionary *)keyTranslations {
+	return [[self class] buildXmlElementAs:rootName withInnerXml:[self toXMLValue]];
+}
 
 @end

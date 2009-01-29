@@ -13,5 +13,8 @@
 
 + (NSString *)fromXmlString:(NSString *)aString;
 - (NSString *)toXMLValue;
+- (NSString *)toXMLElementAs:(NSString *)rootName excludingInArray:(NSArray *)exclusions
+			withTranslations:(NSDictionary *)keyTranslations;
+
 
 @end
