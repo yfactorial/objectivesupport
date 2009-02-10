@@ -7,8 +7,13 @@ This project originated as a component of ObjectiveResource, but
 it has since outgrown that role and may prove to be useful on
 its own.
 
-h2. Usage
+h2. Installation
 
 # Download (clone) the objectivesupport project
 # open the .xcodeproj in XCode for both objectivesuppoe and your iPhone project
 # drag the ObjectiveSupport group from the objectivesupport project onto your iPhone project, making sure to check the "copy files" box.
+
+h2. Testing
+
+# Build and run the default target, the unit test results will print in the debugger
+console
