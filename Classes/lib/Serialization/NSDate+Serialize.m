@@ -13,7 +13,7 @@
 @implementation NSDate(Serialize)
 
 + (NSDate *) deserialize:(id)value {
-return (value == [NSNull null]) ? nil : [ObjectiveResourceDateFormatter parseDateTime:value];
+	return (value == [NSNull null]) ? nil : [ObjectiveResourceDateFormatter parseDateTime:value];
 }
 
 - (NSString *) serialize {
