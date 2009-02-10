@@ -1,0 +1,14 @@
+h2. Overview
+
+ObjectiveSupport aims to bring some of the popular Rubyisms found in
+ActiveSupport to Objective-C.
+
+This project originated as a component of ObjectiveResource, but 
+it has since outgrown that role and may prove to be useful on
+its own.
+
+h2. Usage
+# Download (clone) the objectivesupport project
+# open the .xcodeproj in XCode for both objectivesuppoe and your iPhone project
+# drag the ObjectiveSupport group from the objectivesupport project onto your iPhone project, making
+sure to check the "copy files" box.
