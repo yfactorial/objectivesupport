@@ -13,7 +13,11 @@
 
 static NSString *dateTimeFormatString = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
 static NSString *dateFormatString = @"yyyy-MM-dd";
+static ORSDateFormat _dateFormat;
 
++ (void)setSerializeFormat:(ORSDateFormat)dateFormat {
+	_dateFormat = dateFormat;
+}
 
 + (void)setDateFormatString:(NSString *)format {
 	dateFormatString = format;
@@ -27,7 +31,12 @@ static NSString *dateFormatString = @"yyyy-MM-dd";
 	
 	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
 	[formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-	[formatter setDateFormat:dateFormatString];
+	if(_dateFormat == Date) {
+		[formatter setDateFormat:dateFormatString];
+	}
+	else {
+		[formatter setDateFormat:dateTimeFormatString];		
+	}
 	[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
 	return [formatter stringFromDate:date];
 	

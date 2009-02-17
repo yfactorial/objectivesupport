@@ -11,11 +11,13 @@
 
 @implementation TestClass
 
-@synthesize name, createdAt;
+@synthesize name, createdAt , testClassId , weight;
 
 #pragma mark cleanup
 - (void) dealloc
 {
+	[weight release];
+	[testClassId release];
 	[name release];
 	[createdAt release];
 	[super dealloc];

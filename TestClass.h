@@ -13,10 +13,14 @@
 
 	NSString *name;
 	NSDate *createdAt;
+	NSNumber *testClassId;
+	NSDecimalNumber *weight;
 	
 }
 
+@property(nonatomic, retain) NSDecimalNumber *weight;
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSDate *createdAt;
+@property(nonatomic, retain) NSNumber *testClassId;
 
 @end

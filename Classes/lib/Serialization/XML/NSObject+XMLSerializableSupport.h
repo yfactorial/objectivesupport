@@ -10,6 +10,9 @@
 
 @interface NSObject (XMLSerializableSupport) <XMLSerializable>
 
++ (NSString *)xmlTypeFor:(NSObject *)value;
++ (NSString *)buildXmlElementAs:(NSString *)rootName withInnerXml:(NSString *)value andType:(NSString *)xmlType;
+
 /**
  * Construct a string representation of the given value object, assuming
  * the given root element name , the NSObjects's toXmlValue is called.

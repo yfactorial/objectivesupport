@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+XMLSerializableSupport.h"
+#import "NSDictionary+XMLSerializableSupport.h"
 #import "CoreSupport.h"
 #import "FromXMLElementDelegate.h"
 
@@ -44,8 +45,7 @@
 	}
 }
 
-+ (NSString *)buildXmlElementAs:(NSString *)rootName withInnerXml:(NSString *)value {
-	NSString *xmlType = [self xmlTypeFor:value];
++ (NSString *)buildXmlElementAs:(NSString *)rootName withInnerXml:(NSString *)value andType:(NSString *)xmlType{
 	NSString *dashedName = [rootName dasherize];
 	
 	if (xmlType != nil) {
@@ -55,13 +55,17 @@
 	}	
 }
 
++ (NSString *)buildXmlElementAs:(NSString *)rootName withInnerXml:(NSString *)value {
+	return [[self class] buildXmlElementAs:rootName withInnerXml:value andType:nil];
+}
+
 + (NSString *)buildXMLElementAs:(NSString *)rootName withValue:(NSObject *)value {
-	return [[self class] buildXmlElementAs:rootName withInnerXml:[value toXMLValue]];
+	return [[self class] buildXmlElementAs:rootName withInnerXml:[value toXMLValue] andType:[self xmlTypeFor:value]];
 }
 
 + (NSString *)xmlElementName {
 	NSString *className = NSStringFromClass(self);
-	return [className stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[className substringToIndex:1] lowercaseString]];
+	return [[className stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[className substringToIndex:1] lowercaseString]] dasherize];
 }
 
 # pragma mark XMLSerializable implementation methods
@@ -91,7 +95,7 @@
  **/
 - (NSString *)toXMLElementAs:(NSString *)rootName excludingInArray:(NSArray *)exclusions
 			withTranslations:(NSDictionary *)keyTranslations {
-	return [[self properties] toXMLElementAs:rootName excludingInArray:exclusions withTranslations:keyTranslations];
+	return [[self properties] toXMLElementAs:rootName excludingInArray:exclusions withTranslations:keyTranslations andType:[[self class] xmlTypeFor:self]];
 }
 
 # pragma mark XML Serialization convenience methods

@@ -6,9 +6,11 @@
 //  Copyright 2008 yFactorial, LLC. All rights reserved.
 //
 
-#import "ComplexXMLSerializable.h"
 
-@interface NSDictionary (XMLSerializableSupport) <ComplexXMLSerializable>
+@interface NSDictionary (XMLSerializableSupport)
+
+- (NSString *)toXMLElementAs:(NSString *)rootName excludingInArray:(NSArray *)exclusions
+						withTranslations:(NSDictionary *)keyTranslations andType:(NSString *)xmlType;
 
 - (NSString *)toXMLElementAs:(NSString *)rootName excludingInArray:(NSArray *)exclusions
 			withTranslations:(NSDictionary *)keyTranslations;

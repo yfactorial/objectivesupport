@@ -30,7 +30,6 @@
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {	
-
 	if ([@"nil-classes" isEqualToString:elementName]) {
 		//empty result set, do nothing
 	}
@@ -38,15 +37,15 @@
 	//Start of an array type
 	else if ([@"array" isEqualToString:[attributeDict objectForKey:@"type"]]) {
     self.parsedObject = [NSMutableArray array];
-		[self.unclosedProperties addObject:[NSArray arrayWithObjects:[elementName camelize], self.parsedObject, nil]];
-		self.currentPropertyName = [elementName camelize];
+		[self.unclosedProperties addObject:[NSArray arrayWithObjects:elementName, self.parsedObject, nil]];
+		self.currentPropertyName = elementName;
 	}
 	
 	//Start of the root object
     else if (parsedObject == nil && [elementName isEqualToString:[self.targetClass xmlElementName]]) {
         self.parsedObject = [[[self.targetClass alloc] init] autorelease];
-		[self.unclosedProperties addObject:[NSArray arrayWithObjects:[elementName camelize], self.parsedObject, nil]];
-		self.currentPropertyName = [elementName camelize];
+		[self.unclosedProperties addObject:[NSArray arrayWithObjects:elementName, self.parsedObject, nil]];
+		self.currentPropertyName = elementName;
     }
 	
 	else {
@@ -64,10 +63,9 @@
 		// If we recognize an element that corresponds to a known property of the current parent object, or if the
 		// current parent is an array then start collecting content for this child element
     
-    
 		if (([self.parsedObject isKindOfClass:[NSArray class]]) ||
         ([[[self.parsedObject class] propertyNames] containsObject:[[self convertElementName:elementName] camelize]])) {
-			self.currentPropertyName = [[self convertElementName:elementName] camelize];
+			self.currentPropertyName = [self convertElementName:elementName];
 			self.contentOfCurrentProperty = [NSMutableString string];
 			self.currentPropertyType = [attributeDict objectForKey:@"type"];
 		} else {
@@ -102,6 +100,12 @@
 	else if ([type isEqualToString:@"date"]) {
 		return [NSDate fromXMLDateString:propertyValue];
 	}
+	else if ([type isEqualToString:@"decimal"]) {
+		return [NSDecimalNumber decimalNumberWithString:propertyValue];
+	}
+	else if ([type isEqualToString:@"integer"]) {
+		return [NSNumber numberWithInt:[propertyValue intValue]];
+	}
 	else {
 		return [NSString fromXmlString:propertyValue];
 	}
@@ -111,12 +115,12 @@
 - (NSString *) convertElementName:(NSString *)anElementName {
  
   if([anElementName isEqualToString:@"id"]) {
-   
-    return [NSString stringWithFormat:@"%@_%@" , [NSStringFromClass([self.parsedObject class]) 
-                                                 stringByReplacingCharactersInRange:NSMakeRange(0, 1) 
-                                                 withString:[[NSStringFromClass([self.parsedObject class]) 
-                                                              substringWithRange:NSMakeRange(0,1)] 
-                                                              lowercaseString]], anElementName];
+		return [NSString stringWithFormat:@"%@Id",[[[self.parsedObject class]xmlElementName] camelize]];
+ //   return [NSString stringWithFormat:@"%@_%@" , [NSStringFromClass([self.parsedObject class]) 
+//                                                 stringByReplacingCharactersInRange:NSMakeRange(0, 1) 
+//                                                 withString:[[NSStringFromClass([self.parsedObject class]) 
+//                                                              substringWithRange:NSMakeRange(0,1)] 
+//                                                              lowercaseString]], anElementName];
   }
   else {
     
@@ -133,9 +137,9 @@
 	if(self.contentOfCurrentProperty != nil && self.currentPropertyName != nil) {
 		[self.parsedObject 
 		 setValue:[self convertProperty:self.contentOfCurrentProperty toType:self.currentPropertyType]  
-		 forKey:self.currentPropertyName];
+		 forKey:[self.currentPropertyName camelize]];
 	}
-	else if ([self.currentPropertyName isEqualToString:[self convertElementName:[elementName camelize]]]) {
+	else if ([self.currentPropertyName isEqualToString:[self convertElementName:elementName]]) {
 		//element is closed, pop it from the stack
 		[self.unclosedProperties removeLastObject];
 		//check for a parent object on the stack
