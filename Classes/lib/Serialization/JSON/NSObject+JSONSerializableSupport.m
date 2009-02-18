@@ -14,8 +14,7 @@
 
 @interface NSObject (JSONSerializableSupport_Private)
 + (id) deserializeJSON:(id)jsonObject;
-- (NSString *) convertProperty:(NSString *)propertyName;
-- (NSString *) jsonClassName;
+- (NSString *) convertProperty:(NSString *)propertyName andClassName:(NSString *)className;
 @end
 
 @implementation NSObject (JSONSerializableSupport)
@@ -84,7 +83,7 @@
 		NSDictionary *objectPropertyNames = [objectClass propertyNamesAndTypes];
 		
 		for (NSString *property in [properties allKeys]) {
-			NSString *propertyCamalized = [[self convertProperty:property] camelize];
+			NSString *propertyCamalized = [[self convertProperty:property andClassName:objectName] camelize];
 			if ([[objectPropertyNames allKeys]containsObject:propertyCamalized]) {
 				Class propertyClass = [self propertyClass:[objectPropertyNames objectForKey:propertyCamalized]];
 				[result setValue:[self deserializeJSON:[propertyClass deserialize:[properties objectForKey:property]]] forKey:propertyCamalized];
@@ -98,9 +97,9 @@
 	return result;
 }
 
-- (NSString *) convertProperty:(NSString *)propertyName {
+- (NSString *) convertProperty:(NSString *)propertyName andClassName:(NSString *)className {
 	if([propertyName isEqualToString:@"id"]) {
-		propertyName = [NSString stringWithFormat:@"%@_id",[self jsonClassName]];
+		propertyName = [NSString stringWithFormat:@"%@_id",className];
 	}
 	return propertyName;
 }

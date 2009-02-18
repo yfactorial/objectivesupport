@@ -12,10 +12,9 @@
 @implementation NSDictionary (XMLSerializableSupport)
 
 
-
 - (NSString *)toXMLElementAs:(NSString *)rootName excludingInArray:(NSArray *)exclusions
-			withTranslations:(NSDictionary *)keyTranslations {
-	
+						withTranslations:(NSDictionary *)keyTranslations andType:(NSString *)xmlType {
+
 	NSMutableString* elementValue = [NSMutableString string];
 	id value;
 	NSString *propertyRootName;
@@ -27,7 +26,12 @@
 			[elementValue appendString:[value toXMLElementAs:propertyRootName]];
 		}
 	}
-	return [[self class] buildXmlElementAs:rootName withInnerXml:elementValue];
+	return [[self class] buildXmlElementAs:rootName withInnerXml:elementValue andType:xmlType];
+}
+	
+- (NSString *)toXMLElementAs:(NSString *)rootName excludingInArray:(NSArray *)exclusions
+			withTranslations:(NSDictionary *)keyTranslations {
+	return [self toXMLElementAs:rootName excludingInArray:exclusions withTranslations:keyTranslations andType:nil];
 }
 
 @end

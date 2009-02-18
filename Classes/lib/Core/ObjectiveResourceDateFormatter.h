@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 
 
-@interface ObjectiveResourceDateFormatter : NSObject {
+@interface ObjectiveResourceDateFormatter : NSObject 
 
-}
+typedef enum {
+	Date = 0,
+	DateTime,
+} ORSDateFormat;
 
++ (void)setSerializeFormat:(ORSDateFormat)dateFormat;
 + (void)setDateFormatString:(NSString *)format;
 + (void)setDateTimeFormatString:(NSString *)format;
 + (NSString *)formatDate:(NSDate *)date;

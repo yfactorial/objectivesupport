@@ -22,4 +22,14 @@
 	return result;
 }
 
+- (NSString *)toXMLElementAs:(NSString *)rootName excludingInArray:(NSArray *)exclusions
+						withTranslations:(NSDictionary *)keyTranslations {
+	NSMutableString *elementValue = [NSMutableString string];
+	for (id element in self) {
+		[elementValue appendString:[element toXMLElementAs:[[element class] xmlElementName] excludingInArray:exclusions withTranslations:keyTranslations]];
+	}
+	return [[self class] buildXmlElementAs:rootName withInnerXml:elementValue andType:@"array"];
+}
+
+
 @end

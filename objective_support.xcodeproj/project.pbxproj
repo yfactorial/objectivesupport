@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		2307A51D0F42096900966C77 /* NSDateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2307A51C0F42096900966C77 /* NSDateTest.m */; };
+		237A71D30F49F8AD007AE4E5 /* NSArray+JSONSerializableSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 237A71D20F49F8AD007AE4E5 /* NSArray+JSONSerializableSupport.m */; };
+		237ACD080F4B1CD8009890E1 /* NSNumber+XMLSerializableSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 237ACD070F4B1CD8009890E1 /* NSNumber+XMLSerializableSupport.m */; };
 		23812C700F42028E006AB663 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23812C6F0F42028E006AB663 /* UIKit.framework */; };
 		23812C720F4202A0006AB663 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23812C710F4202A0006AB663 /* Foundation.framework */; };
 		23812C740F4202B8006AB663 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23812C730F4202B8006AB663 /* CoreGraphics.framework */; };
 		23812C890F4203A2006AB663 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 23812C880F4203A2006AB663 /* GTMSenTestCase.m */; };
 		23812C8D0F4203BF006AB663 /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23812C8B0F4203BF006AB663 /* GTMIPhoneUnitTestDelegate.m */; };
 		23812C8E0F4203BF006AB663 /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 23812C8C0F4203BF006AB663 /* GTMIPhoneUnitTestMain.m */; };
+		23C783430F46497E0096B79D /* XMLDeserializeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C783420F46497E0096B79D /* XMLDeserializeTest.m */; };
 		351C5C5F0F4230C20008D3BC /* JSONDeserializeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 351C5C5E0F4230C20008D3BC /* JSONDeserializeTest.m */; };
 		351C5C620F4230DE0008D3BC /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 351C5C610F4230DE0008D3BC /* TestClass.m */; };
 		35C6775B0F2E67DE005FF6CE /* NSString+InflectionSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C6772F0F2E67DE005FF6CE /* NSString+InflectionSupport.m */; };
@@ -45,6 +48,10 @@
 		1D6058910D05DD3D006BFB54 /* objective_support.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = objective_support.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2307A51B0F42096900966C77 /* NSDateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDateTest.h; path = Classes/unit_tests/NSDateTest.h; sourceTree = "<group>"; };
 		2307A51C0F42096900966C77 /* NSDateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDateTest.m; path = Classes/unit_tests/NSDateTest.m; sourceTree = "<group>"; };
+		237A71D10F49F8AD007AE4E5 /* NSArray+JSONSerializableSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+JSONSerializableSupport.h"; sourceTree = "<group>"; };
+		237A71D20F49F8AD007AE4E5 /* NSArray+JSONSerializableSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+JSONSerializableSupport.m"; sourceTree = "<group>"; };
+		237ACD060F4B1CD8009890E1 /* NSNumber+XMLSerializableSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+XMLSerializableSupport.h"; sourceTree = "<group>"; };
+		237ACD070F4B1CD8009890E1 /* NSNumber+XMLSerializableSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+XMLSerializableSupport.m"; sourceTree = "<group>"; };
 		23812C6F0F42028E006AB663 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		23812C710F4202A0006AB663 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		23812C730F4202B8006AB663 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,6 +61,8 @@
 		23812C8A0F4203BF006AB663 /* GTMIPhoneUnitTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMIPhoneUnitTestDelegate.h; path = google_toolbar/UnitTesting/GTMIPhoneUnitTestDelegate.h; sourceTree = "<group>"; };
 		23812C8B0F4203BF006AB663 /* GTMIPhoneUnitTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestDelegate.m; path = google_toolbar/UnitTesting/GTMIPhoneUnitTestDelegate.m; sourceTree = "<group>"; };
 		23812C8C0F4203BF006AB663 /* GTMIPhoneUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestMain.m; path = google_toolbar/UnitTesting/GTMIPhoneUnitTestMain.m; sourceTree = "<group>"; };
+		23C783410F46497E0096B79D /* XMLDeserializeTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDeserializeTest.h; path = Classes/unit_tests/XMLDeserializeTest.h; sourceTree = "<group>"; };
+		23C783420F46497E0096B79D /* XMLDeserializeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLDeserializeTest.m; path = Classes/unit_tests/XMLDeserializeTest.m; sourceTree = "<group>"; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* objective_support_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objective_support_Prefix.pch; sourceTree = "<group>"; };
 		351C5C5D0F4230C20008D3BC /* JSONDeserializeTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDeserializeTest.h; sourceTree = "<group>"; };
@@ -164,6 +173,8 @@
 				351C5C5E0F4230C20008D3BC /* JSONDeserializeTest.m */,
 				351C5C600F4230DE0008D3BC /* TestClass.h */,
 				351C5C610F4230DE0008D3BC /* TestClass.m */,
+				23C783410F46497E0096B79D /* XMLDeserializeTest.h */,
+				23C783420F46497E0096B79D /* XMLDeserializeTest.m */,
 			);
 			name = Serialization;
 			sourceTree = "<group>";
@@ -272,6 +283,8 @@
 		35C6773A0F2E67DE005FF6CE /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				237A71D10F49F8AD007AE4E5 /* NSArray+JSONSerializableSupport.h */,
+				237A71D20F49F8AD007AE4E5 /* NSArray+JSONSerializableSupport.m */,
 				35C6773B0F2E67DE005FF6CE /* JSONSerializable.h */,
 				35C6773C0F2E67DE005FF6CE /* JSONSerializableSupport.h */,
 				35C6773D0F2E67DE005FF6CE /* NSDictionary+JSONSerializableSupport.h */,
@@ -301,6 +314,8 @@
 				35C677580F2E67DE005FF6CE /* NSString+XMLSerializableSupport.m */,
 				35C677590F2E67DE005FF6CE /* XMLSerializable.h */,
 				35C6775A0F2E67DE005FF6CE /* XMLSerializableSupport.h */,
+				237ACD060F4B1CD8009890E1 /* NSNumber+XMLSerializableSupport.h */,
+				237ACD070F4B1CD8009890E1 /* NSNumber+XMLSerializableSupport.m */,
 			);
 			path = XML;
 			sourceTree = "<group>";
@@ -399,6 +414,9 @@
 				2307A51D0F42096900966C77 /* NSDateTest.m in Sources */,
 				351C5C5F0F4230C20008D3BC /* JSONDeserializeTest.m in Sources */,
 				351C5C620F4230DE0008D3BC /* TestClass.m in Sources */,
+				23C783430F46497E0096B79D /* XMLDeserializeTest.m in Sources */,
+				237A71D30F49F8AD007AE4E5 /* NSArray+JSONSerializableSupport.m in Sources */,
+				237ACD080F4B1CD8009890E1 /* NSNumber+XMLSerializableSupport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "NSDate+XMLSerializableSupport.h"
+#import "NSObject+XMLSerializableSupport.h"
 #import "ObjectiveResourceDateFormatter.h"
 
 @implementation NSDate (XMLSerializableSupport)
@@ -15,6 +16,11 @@
 
 - (NSString *)toXMLValue {
 	return [ ObjectiveResourceDateFormatter formatDate:self]; 
+}
+
+- (NSString *)toXMLElementAs:(NSString *)rootName excludingInArray:(NSArray *)exclusions
+						withTranslations:(NSDictionary *)keyTranslations {
+	return [[self class] buildXmlElementAs:rootName withInnerXml:[self toXMLValue] andType:[[self class] xmlTypeFor:self]];
 }
 
 + (NSDate *)fromXMLDateTimeString:(NSString *)xmlString {

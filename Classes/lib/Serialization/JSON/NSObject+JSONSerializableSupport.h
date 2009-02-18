@@ -19,5 +19,6 @@
 - (NSString *)toJSONAs:(NSString *)rootName withTranslations:(NSDictionary *)keyTranslations;
 - (NSString *)toJSONAs:(NSString *)rootName excludingInArray:(NSArray *)exclusions
 			withTranslations:(NSDictionary *)keyTranslations;
+- (NSString *) jsonClassName;
 
 @end
