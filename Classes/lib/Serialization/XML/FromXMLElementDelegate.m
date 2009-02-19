@@ -100,12 +100,16 @@
 	else if ([type isEqualToString:@"date"]) {
 		return [NSDate fromXMLDateString:propertyValue];
 	}
-	else if ([type isEqualToString:@"decimal"]) {
-		return [NSDecimalNumber decimalNumberWithString:propertyValue];
-	}
-	else if ([type isEqualToString:@"integer"]) {
-		return [NSNumber numberWithInt:[propertyValue intValue]];
-	}
+	
+	// uncomment this if you what to support NSNumber and NSDecimalNumber
+	// if you do your classId must be a NSNumber since rails will pass it as such
+	//else if ([type isEqualToString:@"decimal"]) {
+	//	return [NSDecimalNumber decimalNumberWithString:propertyValue];
+	//}
+	//else if ([type isEqualToString:@"integer"]) {
+	//	return [NSNumber numberWithInt:[propertyValue intValue]];
+	//}
+	
 	else {
 		return [NSString fromXmlString:propertyValue];
 	}
