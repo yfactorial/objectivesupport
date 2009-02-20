@@ -33,9 +33,11 @@
 	STAssertTrue([testClass.name isEqualToString:@"Hourly Test"] , @"should be \"Hourly Test\"");
 	STAssertTrue([testClass.createdAt isEqualToDate:dateToTest] , @"Date should be 2009-02-16T10:43:50Z , but got %@" , testClass.createdAt);
 	STAssertTrue([testClass.testClassId intValue] == 1,@"Model should have an id of 1");
+	
+	NSString *output = @"<test-class><created-at type=\"datetime\">2009-02-16T10:43:50Z</created-at><weight>2.1</weight><name>Hourly Test</name><id>1</id></test-class>";
 	STAssertEqualStrings([testClass toXMLElementAs:@"test-class" excludingInArray:[NSArray array] 
 											 withTranslations:[NSDictionary dictionaryWithObject:@"id" forKey:@"testClassId"]], 
-											 testXML, @"reserialization of object should match original string");
+											 output, @"reserialization of object should match original string");
 }
 
 -(void) testDeserializationOfArray {
