@@ -73,4 +73,8 @@
 	return type;
 }
 
+- (NSString *)className {
+	return NSStringFromClass([self class]);
+}
+
 @end
