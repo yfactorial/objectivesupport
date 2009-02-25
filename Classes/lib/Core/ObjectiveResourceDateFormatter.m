@@ -12,6 +12,7 @@
 @implementation ObjectiveResourceDateFormatter
 
 static NSString *dateTimeFormatString = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+static NSString *dateTimeZoneFormatString = @"yyyy-MM-dd'T'HH:mm:ssz";
 static NSString *dateFormatString = @"yyyy-MM-dd";
 static ORSDateFormat _dateFormat;
 
@@ -25,6 +26,10 @@ static ORSDateFormat _dateFormat;
 
 + (void)setDateTimeFormatString:(NSString *)format {
 	dateTimeFormatString = format;
+}
+
++ (void)setDateTimeZoneFormatString:(NSString *)format {
+	dateTimeZoneFormatString = format;
 }
 
 + (NSString *)formatDate:(NSDate *)date {
@@ -45,8 +50,9 @@ static ORSDateFormat _dateFormat;
 + (NSDate *)parseDateTime:(NSString *)dateTimeString {
 
 	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSString *format = ([dateTimeString hasSuffix:@"Z"]) ? dateTimeFormatString : dateTimeZoneFormatString;
 	[formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-	[formatter setDateFormat:dateTimeFormatString];
+	[formatter setDateFormat:format];
 	[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
 	return [formatter dateFromString:dateTimeString];
 	
