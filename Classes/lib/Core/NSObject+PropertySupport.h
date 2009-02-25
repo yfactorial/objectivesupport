@@ -29,4 +29,7 @@
  * values.
  */
 - (void)setProperties:(NSDictionary *)overrideProperties;
+
+- (NSString *)className;
+
 @end
