@@ -28,6 +28,10 @@ static ORSDateFormat _dateFormat;
 	dateTimeFormatString = format;
 }
 
++ (void)setDateTimeZoneFormatString:(NSString *)format {
+	dateTimeZoneFormatString = format;
+}
+
 + (NSString *)formatDate:(NSDate *)date {
 	
 	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
