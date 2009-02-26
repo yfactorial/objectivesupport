@@ -585,7 +585,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = objective_support_Prefix.pch;
-				INFOPLIST_FILE = /Users/jjburka/Documents/Projects/yfactorial/objectivesupport/Coverage.plist;
+				INFOPLIST_FILE = Coverage.plist;
 				OTHER_LDFLAGS = "-lgcov";
 				PRODUCT_NAME = objective_support;
 			};
