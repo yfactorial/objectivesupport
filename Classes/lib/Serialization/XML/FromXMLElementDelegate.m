@@ -33,17 +33,15 @@
 	if ([@"nil-classes" isEqualToString:elementName]) {
 		//empty result set, do nothing
 	}
-	
-	//Start of an array type
-	else if ([@"array" isEqualToString:[attributeDict objectForKey:@"type"]]) {
-    self.parsedObject = [NSMutableArray array];
-		[self.unclosedProperties addObject:[NSArray arrayWithObjects:elementName, self.parsedObject, nil]];
-		self.currentPropertyName = elementName;
-	}
-	
+		
 	//Start of the root object
-    else if (parsedObject == nil && [elementName isEqualToString:[self.targetClass xmlElementName]]) {
-        self.parsedObject = [[[self.targetClass alloc] init] autorelease];
+    else if (parsedObject == nil) {
+		if ([elementName isEqualToString:[self.targetClass xmlElementName]]) {
+			self.parsedObject = [[[self.targetClass alloc] init] autorelease];
+		}
+		else if ([@"array" isEqualToString:[attributeDict objectForKey:@"type"]]) {
+			self.parsedObject = [NSMutableArray array];
+		}
 		[self.unclosedProperties addObject:[NSArray arrayWithObjects:elementName, self.parsedObject, nil]];
 		self.currentPropertyName = elementName;
     }
@@ -66,9 +64,16 @@
 		if (([self.parsedObject isKindOfClass:[NSArray class]]) ||
         ([[[self.parsedObject class] propertyNames] containsObject:[[self convertElementName:elementName] camelize]])) {
 			self.currentPropertyName = [self convertElementName:elementName];
-			self.contentOfCurrentProperty = [NSMutableString string];
-			self.currentPropertyType = [attributeDict objectForKey:@"type"];
-		} else {
+			if ([@"array" isEqualToString:[attributeDict objectForKey:@"type"]]) {
+				self.parsedObject = [NSMutableArray array];
+				[self.unclosedProperties addObject:[NSArray arrayWithObjects:elementName, self.parsedObject, nil]];
+			}
+			else {
+				self.contentOfCurrentProperty = [NSMutableString string];
+				self.currentPropertyType = [attributeDict objectForKey:@"type"];
+			}
+		}		
+		else {
 			// The element isn't one that we care about, so set the property that holds the 
 			// character content of the current element to nil. That way, in the parser:foundCharacters:
 			// callback, the string that the parser reports will be ignored.

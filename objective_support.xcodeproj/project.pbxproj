@@ -75,6 +75,10 @@
 		35C677850F2E6886005FF6CE /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C677800F2E6886005FF6CE /* NSObject+SBJSON.m */; };
 		35C677860F2E6886005FF6CE /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C677820F2E6886005FF6CE /* NSString+SBJSON.m */; };
 		35C677870F2E6886005FF6CE /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C677840F2E6886005FF6CE /* SBJSON.m */; };
+		35CC9B700F5C9F0600BAE304 /* TestClassTop.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CC9B6F0F5C9F0600BAE304 /* TestClassTop.m */; };
+		35CC9B710F5C9F0600BAE304 /* TestClassTop.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CC9B6F0F5C9F0600BAE304 /* TestClassTop.m */; };
+		35CC9B740F5C9F1000BAE304 /* TestClassMiddle.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CC9B730F5C9F1000BAE304 /* TestClassMiddle.m */; };
+		35CC9B750F5C9F1000BAE304 /* TestClassMiddle.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CC9B730F5C9F1000BAE304 /* TestClassMiddle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +162,10 @@
 		35C677820F2E6886005FF6CE /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
 		35C677830F2E6886005FF6CE /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
 		35C677840F2E6886005FF6CE /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		35CC9B6E0F5C9F0600BAE304 /* TestClassTop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestClassTop.h; sourceTree = "<group>"; };
+		35CC9B6F0F5C9F0600BAE304 /* TestClassTop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClassTop.m; sourceTree = "<group>"; };
+		35CC9B720F5C9F1000BAE304 /* TestClassMiddle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestClassMiddle.h; sourceTree = "<group>"; };
+		35CC9B730F5C9F1000BAE304 /* TestClassMiddle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClassMiddle.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -224,6 +232,10 @@
 				351C5C5E0F4230C20008D3BC /* JSONDeserializeTest.m */,
 				351C5C600F4230DE0008D3BC /* TestClass.h */,
 				351C5C610F4230DE0008D3BC /* TestClass.m */,
+				35CC9B720F5C9F1000BAE304 /* TestClassMiddle.h */,
+				35CC9B730F5C9F1000BAE304 /* TestClassMiddle.m */,
+				35CC9B6E0F5C9F0600BAE304 /* TestClassTop.h */,
+				35CC9B6F0F5C9F0600BAE304 /* TestClassTop.m */,
 				23C783410F46497E0096B79D /* XMLDeserializeTest.h */,
 				23C783420F46497E0096B79D /* XMLDeserializeTest.m */,
 			);
@@ -504,6 +516,8 @@
 				237A71D30F49F8AD007AE4E5 /* NSArray+JSONSerializableSupport.m in Sources */,
 				237ACD080F4B1CD8009890E1 /* NSNumber+XMLSerializableSupport.m in Sources */,
 				23BE674A0F55941D002045F8 /* ObjectiveResourceDateFormatterTest.m in Sources */,
+				35CC9B700F5C9F0600BAE304 /* TestClassTop.m in Sources */,
+				35CC9B750F5C9F1000BAE304 /* TestClassMiddle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +556,8 @@
 				23B8A4FB0F55F2A600F74584 /* NSArray+JSONSerializableSupport.m in Sources */,
 				23B8A4FC0F55F2A600F74584 /* NSNumber+XMLSerializableSupport.m in Sources */,
 				23B8A4FD0F55F2A600F74584 /* ObjectiveResourceDateFormatterTest.m in Sources */,
+				35CC9B710F5C9F0600BAE304 /* TestClassTop.m in Sources */,
+				35CC9B740F5C9F1000BAE304 /* TestClassMiddle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

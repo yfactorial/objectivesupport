@@ -10,6 +10,8 @@
 #import "NSObject+XMLSerializableSupport.h"
 #import "TestClass.h"
 #import "ObjectiveResourceDateFormatter.h"
+#import "TestClassMiddle.h"
+#import "TestClassTop.h"
 
 @implementation XMLDeserializeTest
 
@@ -50,6 +52,14 @@
 																	excludingInArray:toIngore], 
 											 testXML, @"reserialization of object should match original string");
 	
+	
+}
+
+-(void) testArrayProperties {
+	[ObjectiveResourceDateFormatter setSerializeFormat:DateTime];
+	NSString *testXML = @"<test-class-top><test-class-middle><test-classes type=\"array\"><test-class><created-at></created-at><name>Hourly Test</name></test-class><test-class><created-at type=\"datetime\">2009-02-16T10:43:50Z</created-at><name>Hourly Test</name></test-class></test-classes></test-class-middle><test-classes type=\"array\"><test-class><created-at></created-at><name>Hourly Test</name></test-class><test-class><created-at type=\"datetime\">2009-02-16T10:43:50Z</created-at><name>Hourly Test</name></test-class></test-classes><test-class-top>";
+	TestClassTop *testclassTop = [TestClassTop fromXMLData:[testXML dataUsingEncoding:NSUTF8StringEncoding]];
+	STAssertEquals([testclassTop.testClasses count], [testclassTop.testClassMiddle.testClasses count], @"both test classes should have the same number of entries in their array properties");
 	
 }
 
