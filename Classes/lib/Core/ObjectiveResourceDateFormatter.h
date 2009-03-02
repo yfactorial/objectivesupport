@@ -19,6 +19,7 @@ typedef enum {
 + (void)setSerializeFormat:(ORSDateFormat)dateFormat;
 + (void)setDateFormatString:(NSString *)format;
 + (void)setDateTimeFormatString:(NSString *)format;
++ (void)setDateTimeZoneFormatString:(NSString *)format;
 + (NSString *)formatDate:(NSDate *)date;
 + (NSDate *)parseDate:(NSString *)dateString;
 + (NSDate *)parseDateTime:(NSString *)dateTimeString;
