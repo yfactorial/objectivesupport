@@ -12,6 +12,7 @@
 @interface NSObject (JSONSerializableSupport) <JSONSerializable>
 
 + (id)fromJSONData:(NSData *)data;
++ (id) deserializeJSON:(id)jsonObject asClass:(Class) claz;
 - (NSString *)toJSON;
 - (NSString *)toJSONExcluding:(NSArray *)exclusions;
 - (NSString *)toJSONAs:(NSString *)rootName;
