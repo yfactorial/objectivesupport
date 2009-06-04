@@ -57,6 +57,43 @@
 	return NSClassFromString([className toClassName]);
 }
 
++ (id) deserializeJSON:(id)jsonObject asClass:(Class) claz {
+	id result = nil;
+	
+	if ([jsonObject isKindOfClass:[NSArray class]]) {
+		//JSON array
+		result = [NSMutableArray array];
+		for (id childObject in jsonObject) {
+			[result addObject:[self deserializeJSON:childObject asClass:claz]];
+		}
+	}
+	else if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+		//this assumes we are dealing with JSON dictionaries without class names
+		// { property1 : value, property2 : {property 3 : value }}
+		result = [[[claz alloc] init] autorelease];
+		
+		NSDictionary *objectPropertyNames = [claz propertyNamesAndTypes];
+		
+		for (NSString *property in [jsonObject allKeys]) {
+			NSString *propertyCamalized = [property camelize];
+			if ([[objectPropertyNames allKeys] containsObject:propertyCamalized]) {
+				Class propertyClass = [self propertyClass:[objectPropertyNames objectForKey:propertyCamalized]];
+				if ([[NSDictionary class] isSubclassOfClass:propertyClass]) {
+					[result setValue:[jsonObject objectForKey:property] forKey:propertyCamalized];
+				}
+				else {
+					[result setValue:[self deserializeJSON:[propertyClass deserializeJSON:[jsonObject objectForKey:property] asClass:propertyClass]] forKey:propertyCamalized];
+				}
+			}
+		}
+	}
+	else {
+		//JSON value
+		result = jsonObject;
+	}
+	return result;
+}
+
 + (id) deserializeJSON:(id)jsonObject {
 	id result = nil;
 	if ([jsonObject isKindOfClass:[NSArray class]]) {

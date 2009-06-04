@@ -39,7 +39,9 @@
 			objc_property_t * prop = propList + i;
 			NSString *type = [NSString stringWithCString:property_getAttributes(*prop) encoding:NSUTF8StringEncoding];
 			propName = [NSString stringWithCString:property_getName(*prop) encoding:NSUTF8StringEncoding];
-			[propertyNames setObject:[self getPropertyType:type] forKey:propName];
+			if (![propName isEqualToString:@"_mapkit_hasPanoramaID"]) {
+				[propertyNames setObject:[self getPropertyType:type] forKey:propName];
+			}
 		}
 		
 		free(propList);
