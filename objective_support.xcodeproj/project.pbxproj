@@ -594,6 +594,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -604,6 +605,7 @@
 				INFOPLIST_FILE = Coverage.plist;
 				OTHER_LDFLAGS = "-lgcov";
 				PRODUCT_NAME = objective_support;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};

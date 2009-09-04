@@ -1,5 +1,5 @@
 //
-//  Deserialize.h
+//  Serialize.h
 //  active_resource
 //
 //  Created by James Burka on 1/19/09.

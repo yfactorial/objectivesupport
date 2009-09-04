@@ -12,8 +12,7 @@
 @implementation NSString(Serialize)
 
 + (NSString *) deserialize:(id)value {
-	return [NSString stringWithFormat:@"%@",value];
+	return (value == [NSNull null])? nil : [NSString stringWithFormat:@"%@",value];
 }
-
 
 @end
