@@ -123,7 +123,19 @@
 			NSString *propertyCamalized = [[self convertProperty:property andClassName:objectName] camelize];
 			if ([[objectPropertyNames allKeys]containsObject:propertyCamalized]) {
 				Class propertyClass = [self propertyClass:[objectPropertyNames objectForKey:propertyCamalized]];
-				[result setValue:[self deserializeJSON:[propertyClass deserialize:[properties objectForKey:property]]] forKey:propertyCamalized];
+				id jsonPropertyValue = [properties objectForKey:property];
+				if ([jsonPropertyValue isKindOfClass:[NSArray class]]) {
+					//Rails does not include class names in included to_many associations, so we need to infer the
+					//class here from the name of the property
+					NSString *propertyClassName = [[propertyCamalized toClassName] substringToIndex:[propertyCamalized length] - 1];
+					Class inferedPropertyClass = NSClassFromString(propertyClassName);
+					if (nil != inferedPropertyClass) {
+						[result setValue:[self deserializeJSON:[propertyClass deserialize:jsonPropertyValue] asClass:inferedPropertyClass] forKey:propertyCamalized];
+					}
+				}
+				else {
+					[result setValue:[self deserializeJSON:[propertyClass deserialize:jsonPropertyValue]] forKey:propertyCamalized];
+				}
 			}
 		}
 	}
