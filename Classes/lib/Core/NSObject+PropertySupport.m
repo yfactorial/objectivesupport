@@ -22,6 +22,15 @@
 }
 
 + (NSDictionary *)propertyNamesAndTypes {
+	
+	NSArray *excludedPropertyNames = 
+		[NSArray arrayWithObjects:@"_mapkit_hasPanoramaID",
+		 @"accessibilityFrame", @"accessibilityHint",
+		 @"accessibilityLabel", @"accessibilityLanguage",
+		 @"accessibilityTraits", @"accessibilityValue",
+		 @"isAccessibilityElement", nil];
+	
+	
 	NSMutableDictionary *propertyNames = [NSMutableDictionary dictionary];
 	
 	//include superclass properties
@@ -39,7 +48,16 @@
 			objc_property_t * prop = propList + i;
 			NSString *type = [NSString stringWithCString:property_getAttributes(*prop) encoding:NSUTF8StringEncoding];
 			propName = [NSString stringWithCString:property_getName(*prop) encoding:NSUTF8StringEncoding];
-			if (![propName isEqualToString:@"_mapkit_hasPanoramaID"]) {
+			
+			BOOL excluded = NO;
+			for (NSString *excludedName in excludedPropertyNames) {
+				if ([propName isEqualToString:excludedName]) {
+					excluded = YES;
+					break;
+				}
+			}
+			
+			if (!excluded) {
 				[propertyNames setObject:[self getPropertyType:type] forKey:propName];
 			}
 		}
