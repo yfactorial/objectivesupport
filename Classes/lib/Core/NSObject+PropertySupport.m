@@ -23,14 +23,6 @@
 
 + (NSDictionary *)propertyNamesAndTypes {
 	
-	NSArray *excludedPropertyNames = 
-		[NSArray arrayWithObjects:@"_mapkit_hasPanoramaID",
-		 @"accessibilityFrame", @"accessibilityHint",
-		 @"accessibilityLabel", @"accessibilityLanguage",
-		 @"accessibilityTraits", @"accessibilityValue",
-		 @"isAccessibilityElement", nil];
-	
-	
 	NSMutableDictionary *propertyNames = [NSMutableDictionary dictionary];
 	
 	//include superclass properties
@@ -49,17 +41,11 @@
 			NSString *type = [NSString stringWithCString:property_getAttributes(*prop) encoding:NSUTF8StringEncoding];
 			propName = [NSString stringWithCString:property_getName(*prop) encoding:NSUTF8StringEncoding];
 			
-			BOOL excluded = NO;
-			for (NSString *excludedName in excludedPropertyNames) {
-				if ([propName isEqualToString:excludedName]) {
-					excluded = YES;
-					break;
-				}
+			NSString *propertyType = [self getPropertyType:type];
+			if (nil != propertyType) {
+				[propertyNames setObject:propertyType forKey:propName];
 			}
-			
-			if (!excluded) {
-				[propertyNames setObject:[self getPropertyType:type] forKey:propName];
-			}
+
 		}
 		
 		free(propList);
@@ -79,17 +65,17 @@
 }
 
 + (NSString *) getPropertyType:(NSString *)attributeString {
-	NSString *type = [NSString string];
+	NSString *type = nil;
 	NSScanner *typeScanner = [NSScanner scannerWithString:attributeString];
 	[typeScanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"@"] intoString:NULL];
 	
-	// we are not dealing with an object
-	if([typeScanner isAtEnd]) {
-		return @"NULL";
+	
+	if(![typeScanner isAtEnd]) {
+		// we didn't hit the end, so we have an object type
+		[typeScanner scanCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\"@"] intoString:NULL];
+		// this gets the actual object type
+		[typeScanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\""] intoString:&type];
 	}
-	[typeScanner scanCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\"@"] intoString:NULL];
-	// this gets the actual object type
-	[typeScanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\""] intoString:&type];
 	return type;
 }
 
