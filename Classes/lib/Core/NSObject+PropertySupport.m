@@ -27,7 +27,7 @@
 	
 	//include superclass properties
 	Class currentClass = [self class];
-	while (currentClass != nil) {
+	while (currentClass != nil && currentClass != [NSObject class]) {
 		// Get the raw list of properties
 		unsigned int outCount;
 		objc_property_t *propList = class_copyPropertyList(currentClass, &outCount);
